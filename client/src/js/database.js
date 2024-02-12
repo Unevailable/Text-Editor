@@ -64,7 +64,6 @@ export const getDb = async () => {
 // Initialize the database
 initdb();
 
-// Example usage
 const sampleContent = 'This is a different sample content';
 putDb(sampleContent); // Add content to the database
 
