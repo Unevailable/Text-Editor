@@ -18,7 +18,9 @@ This is a text editor site made so that users can store notes and snippets of co
 - [Questions](#questions)
 
 ## Installation
-* I first started you need to have to repos two [Book-Search-FE](https://github.com/Unevailable/Book--Search-FE) and [Book-Search-BE](https://github.com/Unevailable/Book--Search-BE)
+* I first clone this repo
+* second npm i
+* last npm run build to use the application
 
 
 ## Usage
