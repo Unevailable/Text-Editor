@@ -1,20 +1,18 @@
-const { CacheFirst } = require('workbox-strategies');
-const { registerRoute } = require('workbox-routing');
-const { CacheableResponsePlugin } = require('workbox-cacheable-response');
-const { precacheAndRoute } = require('workbox-precaching/precacheAndRoute');
+import { CacheFirst } from 'workbox-strategies';
+import { registerRoute } from 'workbox-routing';
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+import { precacheAndRoute } from 'workbox-precaching/precacheAndRoute';
 
-// The precacheAndRoute() method takes an array of URLs to precache.
-// The self._WB_MANIFEST is an array that contains the list of URLs to precache.
+// Use precacheAndRoute with the self.__WB_MANIFEST array to precache URLs.
 precacheAndRoute(self.__WB_MANIFEST);
 
-// Set up asset cache using CacheFirst strategy
+// Set up caching strategy for assets using CacheFirst
 registerRoute(
-  // Here we define the callback function that will filter the requests we want to cache (stylesheets and scripts)
   ({ request }) => request.destination === 'style' || request.destination === 'script',
   new CacheFirst({
-    // Name of the cache storage.
     cacheName: 'asset-cache',
     plugins: [
+      // CacheableResponsePlugin to cache responses with status codes 0 and 200.
       new CacheableResponsePlugin({
         statuses: [0, 200],
       }),

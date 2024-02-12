@@ -15,27 +15,24 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      // Plugin to generate main HTML file with injected script tags
       new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'Jate - Just Another Text Editor',
+        title: 'Jate - Your Text Buddy',
       }),
 
-      // Plugin to inject a service worker into the build and precache assets
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
       }),
 
-      // Plugin to generate a Web App Manifest for PWA
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
-        name: 'Jate',
+        name: 'Jate Text Editor',
         short_name: 'Jate',
-        description: 'Just another text editor!',
-        background_color: '#225ca3',
-        theme_color: '#225ca3',
+        description: 'A simple text editor for your needs!',
+        background_color: '#3498db',
+        theme_color: '#3498db',
         start_url: '/',
         publicPath: '/',
         icons: [
@@ -50,16 +47,13 @@ module.exports = () => {
 
     module: {
       rules: [
-        // Rule to handle CSS files using style-loader and css-loader
         {
           test: /\.css$/i,
           use: ['style-loader', 'css-loader'],
         },
-        // Rule to transpile JavaScript using Babel
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
-          // We use babel-loader in order to use ES6.
           use: {
             loader: 'babel-loader',
             options: {
